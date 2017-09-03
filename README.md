@@ -10,7 +10,7 @@ Dockerfile associated in this repository allows you to containerize the service.
 
 You can pull the image directly from docker hub using the following commands: 
  
- `docker pull hubcapps/gazee`
+ `docker pull hubcapps/docker-gazee`
 
 **Step 1B: Build Docker image for Gazee**
 
