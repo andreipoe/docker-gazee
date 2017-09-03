@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv bash
+
+mkdir -p \
+	/comics \
+  	/certs \
+  	/mylar
+
+chown abc:abc -R \
+  /gazee \
+  /config
