@@ -49,7 +49,7 @@ RUN \
   pip3 install --no-cache-dir -U \
   	configparser && \
 
-  git clone --depth 1 -b development https://github.com/hubbcaps/gazee.git /gazee && \
+  git clone --depth 1 https://github.com/hubbcaps/gazee.git /gazee && \
   
   pip3 install -r /gazee/requirements.txt && \
 
