@@ -32,6 +32,8 @@ docker run -dt \
 -v ${local-gazee-dir}:/config \ 
 -v ${local-mylarDB-dir}:/mylar \
 -v ${local-certs-dir}:/certs \
+-e PUID=${local UID}
+-e PGID=${local GID}
 -p 4242:4242 \
 hubcapps/gazee
 ```
@@ -44,6 +46,8 @@ hubcapps/gazee
 `-v ${local-mylarDB-dir}:/mylar` **Optional Flag** is a volume mount from your local host directory where you have stored your mylar db `${local-mylarDB-dir}` to the `/mylar` directory within the container.
 
 `-v ${local-certs-dir}:/certs` **Optional Flag** is a volume mount from your local host directory where you have stored your server certificate `${local-certs-dir}` to the `/certs` directory within the container.
+
+`-e PUID/PGID:${local UID/GID}` is a flag for setting the user id and group id of the user within the container running Gazee to match the local user that owns the mounted volumes above. This assures that the whole app 'Just Works' and that there will be no permission issues when attempting to write gazee's configs and logs, or when attempting to scan your library.
 
 **Step 3: Logon to Gazee's Web UI**
 
