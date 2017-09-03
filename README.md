@@ -1,41 +1,47 @@
-## Docker for Gazee
+# Docker for Gazee
 
-This is a docker container for the WebApp Comic Reader [Gazee](https://github.com/hubbcaps/gazee).
+This is a docker image for the WebApp Comic Reader [Gazee](https://github.com/hubbcaps/gazee). 
+
+It is a modified version of the [author's Docker image](https://github.com/hubbcaps/docker-gazee) that removes the linuxserver.io base, as they don't use automated builds with public Dockerfiles. Instead, it uses a plain python-alpine base. Below is a slightly modified version of the original readme.
+
+-----
 
 ## Docker Container
 
-Dockerfile associated in this repository allows you to containerize the service. It installs all dependencies and required python packages automatically. You can find the docker image [here in docker hub](https://hub.docker.com/r/hubcapps/docker-gazee/).
+Dockerfile associated in this repository allows you to containerize the service. It installs all dependencies and required python packages automatically. You can find the docker image [here in docker hub](https://hub.docker.com/r/andreipoe/gazee/).
 
-**Step 1A: Pull Docker image for Gazee**
+**Step 1A: Build Docker image for Gazee locally (recommended)**
 
-You can pull the image directly from docker hub using the following commands: 
- 
- `docker pull hubcapps/docker-gazee`
-
-**Step 1B: Build Docker image for Gazee**
-
-Alternatively you can build your own docker image locally by entering in the following commands: 
+You can build your own Docker image locally by cloning this repository and running the following commands: 
 
 ```bash
-git clone https://github.com/hubbcaps/docker-gazee.git
-cd /docker-gazee
-docker build -t hubcapps/gazee .
+git clone https://github.com/andreipoe/docker-gazee.git
+cd docker-gazee
+docker build -t andreipoe/gazee .
 ```
+
+**Step 1B: Pull Docker image for Gazee**
+
+Alternatively, you can pull the image directly from DockerHub: 
+ 
+```
+docker pull andreipoe/gazee
+```
+
 **Step 2: Run docker container**
 
-To run the container, enter the following command on your docker host: 
+To run the container:
 
 ```
-docker run -dt \
---name=gazee \
--v ${local-comics-dir}:/comics \
--v ${local-gazee-dir}:/config \ 
--v ${local-mylarDB-dir}:/mylar \
--v ${local-certs-dir}:/certs \
--e PUID=${local UID}
--e PGID=${local GID}
--p 4242:4242 \
-hubcapps/gazee
+docker run -d --restart-always --name=gazee \
+    -v ${local-comics-dir}:/comics \
+    -v ${local-gazee-dir}:/config \ 
+    -v ${local-mylarDB-dir}:/mylar \
+    -v ${local-certs-dir}:/certs \
+    -e PUID=${local UID}
+    -e PGID=${local GID}
+    -p 4242:4242 \
+    andreipoe/gazee
 ```
 **Note:** 
 
@@ -59,3 +65,6 @@ Go to **http://your-ip:4242**
   
   * **Username:** `admin`
   * **Password:** `gazee`
+
+It is a very good idea to set up a reverse proxy with SSL in front of this Gazee container.
+
