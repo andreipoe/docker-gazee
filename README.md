@@ -4,7 +4,7 @@ This is a docker container for the WebApp Comic Reader [Gazee](https://github.co
 
 ## Docker Container
 
-[Dockerfile](./Dockerfile) associated in this repository allows you to containerize the service. It installs all dependencies and required python packages automatically. You can find the docker image [here in docker hub](https://hub.docker.com/r/hubcapps/gazee/).
+Dockerfile associated in this repository allows you to containerize the service. It installs all dependencies and required python packages automatically. You can find the docker image [here in docker hub](https://hub.docker.com/r/hubcapps/docker-gazee/).
 
 **Step 1A: Pull Docker image for Gazee**
 
