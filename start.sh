@@ -4,6 +4,7 @@ set -u
 set -e
 
 chown -R gazee.gazee /config /comics /mylar /certs
+rm -f /tmp/gazee*
 
 su - gazee -c 'python3 /gazee/Gazee.py -c /config -d'
 
